@@ -1,0 +1,8 @@
+development steps
+
+
+* implement onClick on search button
+  * call external api with the city searched - api returns geocode LAT and LONG - completed
+  * call external api dasksky (see sinatra app) passing the lat and LONG
+   Api call returns weather forecast - completed
+  
