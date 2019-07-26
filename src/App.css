@@ -1,8 +1,72 @@
+body {
+  height: 100vh;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.4)
+    ),
+    url("./image/background_photo.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .App {
   text-align: center;
 }
 
-body {
-  background-color: red;
-  /* background-image: url("../image/background_photo.jpeg"); */
+.title {
+  margin-top: 50px;
+  font-family: "Courgette", cursive;
+}
+
+.search-bar {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 5rem;
+}
+
+.wrapper {
+  margin: 0 auto;
+  margin-top: 70px;
+  width: 45rem;
+  height: 20rem;
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: #e9ecef;
+  border-radius: 0.7rem;
+  box-shadow: 5px 10px #888888;
+}
+
+.form-group {
+  display: flex;
+}
+
+.icon {
+  font-size: 5rem;
+}
+
+.summary {
+  font-size: 20px;
+}
+
+.temperature,
+.city {
+  font-size: 2.5rem;
+}
+
+.about-form {
+  margin-top: 50px;
+}
+
+p {
+  padding: 50px;
+  font-size: 20px;
+}
+
+@media (min-width: 481px) and (max-width: 700px) {
+  .form {
+    display: flex !important;
+    flex-basis: auto;
+  }
 }

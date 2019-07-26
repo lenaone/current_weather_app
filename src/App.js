@@ -1,21 +1,35 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import axios from "axios";
-import Home from "./component/home";
+import SearchBar from "./component/searchBar";
 import About from "./component/about";
 import NavBar from "./component/navBar";
-import DisplayWeatherForm from "./component/displayWeatherForm";
+import DisplayWeather from "./component/displayWeather";
 import "./App.css";
 
 class App extends Component {
 
   state = {
-    icon: '',
+    icon: "",
     searchQuery: "",
     geolocaton: { lat: "", lng: "" },
     location: "",
-    temp: ""
+    temp: "",
+    summary: "",
+    searching: false
   };
+
+  componentDidMount() {
+    window.navigator.geolocation.getCurrentPosition((position) => {
+      this.setState({
+        currentUser_geolocation: {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }
+      })
+      this.handleSearchWeather(this.state.currentUser_geolocation)
+    })
+  }
 
   getIcon = (iconName) => {
     return {
@@ -39,49 +53,54 @@ class App extends Component {
   };
 
   handleSearch = (event, value) => {
-    event.preventDefault();
-    // const icons = generateIcons(icons);
-    const url = `https://api.opencagedata.com/geocode/v1/json?q=${value}&key=57319f72f5704387952e6050c87a1059`;
-    axios.get(url).then(res => {
-      let geolocaton = res.data.results[0]["geometry"];
-      const weatherUrl = `http://localhost:4567/api/forecast?lat=${
-        geolocaton.lat
-        }&lng=${geolocaton.lng}`;
-      axios.get(weatherUrl).then(res => {
-        this.setState({
-          location: res.data.timezone,
-          temp: res.data.currently.temperature,
-          icon: this.getIcon(res.data.currently.icon)
-        });
+    if (value != false) {
+      this.setState({ searching: true })
+      event.preventDefault();
+      const url = `https://api.opencagedata.com/geocode/v1/json?q=${value}&key=57319f72f5704387952e6050c87a1059`;
+      axios.get(url).then(res => {
+        let geolocation = res.data.results[0]["geometry"];
+        this.handleSearchWeather(geolocation)
       });
-    });
+    }
   };
 
+  handleSearchWeather = (geolocation) => {
+    const weatherUrl = `http://localhost:4567/api/forecast?lat=${
+      geolocation.lat
+      }&lng=${geolocation.lng}`;
+    axios.get(weatherUrl).then(res => {
+      this.setState({
+        location: res.data.timezone,
+        temp: res.data.currently.temperature,
+        summary: res.data.currently.icon,
+        icon: this.getIcon(res.data.currently.icon),
+        searching: false
+      });
+    });
+  }
+
   render() {
-    const { icon, searchQuery, location, temp } = this.state;
+    const { icon, searchQuery, location, temp, summary, searching } = this.state;
     return (
       <div className="App">
         <NavBar />
         <Switch>
           <Route
             exact
-            path="/home"
-            render={() => (
-              <Home
-                value={searchQuery}
-                onChange={this.handleChange}
-                handleSearch={this.handleSearch}
-              />
-            )}
-          />
-          <Route
-            exact
             path="/weather"
             render={() => (
-              <DisplayWeatherForm location={location} temp={temp} icon={icon} />
+              <div>
+                <SearchBar
+                  value={searchQuery}
+                  onChange={this.handleChange}
+                  handleSearch={this.handleSearch}
+                />
+                <DisplayWeather location={location} temp={temp} icon={icon} summary={summary} searching={searching} />
+              </div>
             )}
           />
           <Route exact path="/about" render={() => <About />} />
+          <Redirect from="/" to="/weather" />
         </Switch>
       </div>
     );

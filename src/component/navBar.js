@@ -1,14 +1,10 @@
 import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class NavBar extends Component {
-  state = {};
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link className="navbar-brand" to="/">
-          Navbar
-        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -22,9 +18,6 @@ class NavBar extends Component {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
-            <NavLink className="nav-item nav-link" to="/home">
-              Home
-            </NavLink>
             <NavLink className="nav-item nav-link" to="/weather">
               Weather
             </NavLink>
