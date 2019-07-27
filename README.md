@@ -34,7 +34,7 @@ The user's current location is used as default when they first visit the website
 
 - UI(with React)
 
-1. clone it with `https://github.com/lenaone/current_weather_app.git`
+1. clone it with `git clone https://github.com/lenaone/current_weather_app.git`
 
 2. Change to the app directory to `cd current_weather_app`
 
@@ -44,7 +44,7 @@ The user's current location is used as default when they first visit the website
 
 - Server Side(with Sinatra)
 
-1. clone it with `https://github.com/lenaone/weather_app_server_side.git`
+1. clone it with `git clone https://github.com/lenaone/weather_app_server_side.git`
 
 2. Change to the app directory to `cd weather_app_server_side`
 
