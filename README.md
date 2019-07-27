@@ -5,6 +5,8 @@
 This is a simple React Website. This Site shows the current weather icon, summary, temperature and timezone.
 The user's current location is used as default when they first visit the website.
 
+<img src="images/weather_page" width="100" heigh="10"/>
+
 ---
 
 #### Technologies Used
