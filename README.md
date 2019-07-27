@@ -5,7 +5,7 @@
 This is a simple React Website. This Site shows the current weather icon, summary, temperature and timezone.
 The user's current location is used as default when they first visit the website.
 
-<img src="https://github.com/lenaone/current_weather_app/blob/master/src/images/weather_page.png?raw=true" width="100" heigh="20"/>
+<img src="https://github.com/lenaone/current_weather_app/blob/master/src/images/weather_page.png?raw=true" width="400" heigh="100"/>
 ---
 
 #### Technologies Used
