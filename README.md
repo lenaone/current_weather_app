@@ -1,4 +1,4 @@
-#Current Weather Website
+# Current Weather Website
 
 #### Summary
 
@@ -36,12 +36,18 @@ The user's current location is used as default when they first visit the website
 
 1. clone it with `https://github.com/lenaone/current_weather_app.git`
 
-2. npm start
+2. Change to the app directory to `cd current_weather_app`
+
+3. `npm install`
+
+4. `npm start`
 
 - Server Side(with Sinatra)
 
 1. clone it with `https://github.com/lenaone/weather_app_server_side.git`
 
-2. install the gem with `bundle install`
+2. Change to the app directory to `cd weather_app_server_side`
 
-3. ruby main.rb
+3. install the gems with `bundle install`
+
+4. `ruby main.rb`
